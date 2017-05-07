@@ -1,6 +1,7 @@
 package com.yo1000.fishbone.parser
 
 import kotlin.reflect.full.memberExtensionProperties
+import kotlin.reflect.full.memberFunctions
 import kotlin.reflect.full.memberProperties
 import kotlin.reflect.jvm.javaGetter
 
@@ -32,12 +33,20 @@ class PropertyParser(
             return instance[propertyName];
         }
 
-        instance::class.memberProperties.filter { it.name == propertyName }.single().javaGetter?.let {
+        instance::class.memberProperties.find { it.name == propertyName }?.javaGetter?.let {
             return it.invoke(instance)
         }
 
-        instance::class.memberExtensionProperties.filter { it.name == propertyName }.single().javaGetter?.let {
+        instance::class.memberExtensionProperties.find { it.name == propertyName }?.javaGetter?.let {
             return it.invoke(instance)
+        }
+
+        instance::class.memberFunctions.find { it.name == "get${propertyName.first().toUpperCase()}${propertyName.substring(1)}" }?.let {
+            return it.call(instance)
+        }
+
+        instance::class.memberFunctions.find { it.name == "is${propertyName.first().toUpperCase()}${propertyName.substring(1)}" }?.let {
+            return it.call(instance)
         }
 
         return null

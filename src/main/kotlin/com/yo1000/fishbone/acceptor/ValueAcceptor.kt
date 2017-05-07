@@ -51,7 +51,6 @@ class ValueAcceptor {
                                     originColumn + relativeColumn + it)
 
                             if (relativeRow > 0 && viewExpressionMap.containsKey(position)) {
-                                println(viewExpressionMap)
                                 return@eachCell
                             }
 
