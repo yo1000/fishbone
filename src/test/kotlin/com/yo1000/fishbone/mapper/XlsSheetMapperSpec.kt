@@ -8,7 +8,7 @@ import org.jetbrains.spek.api.dsl.on
 import org.junit.Assert
 import java.io.File
 import java.io.FileOutputStream
-import java.time.Instant
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -35,7 +35,7 @@ object XlsSheetMapperSpec : Spek({
         val sheetMapper = XlsSheetMapper()
         val sales = Sales(
                 "Garden center",
-                Date.from(Instant.parse("2017-05-07T01:54:40.1Z")),
+                SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-05-07 01:54:40"),
                 listOf(
                         SalesStatement("Matsuba-giku white", 220, 1),
                         SalesStatement("Matsuba-giku purple", 220, 1),

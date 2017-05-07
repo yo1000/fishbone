@@ -7,7 +7,7 @@
 
     <groupId>com.yo1000</groupId>
     <artifactId>fishbone</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <packaging>jar</packaging>
 
     <description>Map objects to placeholder in Excel template</description>

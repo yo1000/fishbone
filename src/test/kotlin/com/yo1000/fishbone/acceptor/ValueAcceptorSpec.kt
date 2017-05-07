@@ -6,7 +6,7 @@ import org.jetbrains.spek.api.dsl.given
 import org.jetbrains.spek.api.dsl.it
 import org.jetbrains.spek.api.dsl.on
 import org.junit.Assert
-import java.time.Instant
+import java.text.SimpleDateFormat
 import java.util.*
 
 /**
@@ -17,7 +17,7 @@ object ValueAcceptorSpec : Spek({
     data class Stub(
             val str: String = "ABC",
             val int: Int = 100,
-            val date: Date = Date.from(Instant.parse("2017-05-05T02:15:00.0Z"))
+            val date: Date = SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse("2017-05-05 02:15:00")
     )
 
     given("ValueAcceptor") {

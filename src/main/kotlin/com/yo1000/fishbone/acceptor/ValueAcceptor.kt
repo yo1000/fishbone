@@ -25,7 +25,10 @@ class ValueAcceptor {
 
         val doneSet: MutableSet<Position> = mutableSetOf()
 
-        iterateExpressionMap.forEach { (originRow, originColumn), expression ->
+        iterateExpressionMap.forEach { (originalPosition, expression) ->
+            val originRow: Int = originalPosition.row
+            val originColumn: Int = originalPosition.column
+
             expression.invoke(instance, { aliasInstance, (relativeRow, relativeColumn), (width, height, direction) ->
                 when (direction) {
                     Direction.HORIZONTAL -> {
@@ -65,7 +68,7 @@ class ValueAcceptor {
             })
         }
 
-        viewExpressionMap.forEach { position, expression ->
+        viewExpressionMap.forEach { (position, expression) ->
             if (doneSet.contains(position)) {
                 return@forEach
             }
